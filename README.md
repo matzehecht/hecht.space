@@ -1,4 +1,4 @@
-# homepage
+# hecht.space
 
 ## Project setup
 ```
