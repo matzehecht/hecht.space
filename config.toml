@@ -1,0 +1,17 @@
+baseURL = "http://hecht.space/"
+languageCode = "en-us"
+title = "Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN"
+theme = "hugo-theme-codex"
+defaultContentLanguage="en"
+enableEmoji=true
+
+[params]
+  linkedin = "https://www.linkedin.com/in/matthias-hecht-931851164/"
+  xing = "https://www.xing.com/profile/Matthias_Hecht20/"
+  github = "https://github.com/matzehecht"
+  npm = "https://www.npmjs.com/~matzehecht"
+  musescore = "https://musescore.com/user/1060136"
+  # ...
+
+  iconOrder = ["LinkedIn", "Xing", "GitHub", "npm", "MuseScore"]
+  
