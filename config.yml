@@ -1,0 +1,50 @@
+baseURL: 'http://hecht.space/'
+title: Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN
+theme: PaperMod
+
+enableRobotsTXT: true
+paginate: 5
+minify:
+  disableXML: true
+  minifyOutput: true
+
+
+params:
+  defaultTheme: auto # theme
+  ShowShareButtons: true # theme
+  ShowReadingTime: true # theme
+  ShowToc: true # theme
+  tocopen: true # theme
+  title: Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN # theme
+  description: "Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN" # theme
+  author: Matthias Hecht # theme
+  enableEmoji: true
+  linkedin: https://www.linkedin.com/in/matthias-hecht-931851164/
+  xing: https://www.xing.com/profile/Matthias_Hecht20/
+  github: https://github.com/matzehecht
+  npm: https://www.npmjs.com/~matzehecht
+  musescore: https://musescore.com/user/1060136
+  iconOrder: ["LinkedIn", "Xing", "GitHub", "npm", "MuseScore"]
+  displayFullLangName: true
+  fuseOpts: # options for search feature of theme
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+      
+languages:
+    en:
+      languageName: "English"
+      weight: 1
+    de:
+      languageName: "Deutsch"
+      weight: 2
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary for search feature of theme

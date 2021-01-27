@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
+
+<head>
+    {{- partial "head.html" . }}
+</head>
+
+<body class="
+{{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) -}}
+{{- print "list" -}}
+{{- end -}}
+{{- if eq $.Site.Params.defaultTheme `dark` -}}
+{{- print " dark" }}
+{{- end -}}
+" id="top">
+  {{ partial "burger.html" .}} 
+
+  {{ partial "nav.html" .}}
+    <main class="main">
+        {{- block "main" . }}
+        {{- end }}
+    </main>
+    {{- partialCached "footer.html" . .Type .Layout .Params }}
+  
+    {{ $script := resources.Get "js/index.js" | minify | fingerprint }}
+    <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
+    {{ $script := resources.Get "js/custom.js" | minify | fingerprint }}
+    <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
+    {{ block "scripts" . }} {{ end }}
+    {{- /*  theme-toggle is enabled  */}}
+    {{- if (not .Site.Params.disableThemeToggle) }}
+    {{- /*  theme is light  */}}
+    {{- if (eq .Site.Params.defaultTheme "light") }}
+    <script>
+        if (localStorage.getItem("pref-theme") === "dark") {
+            document.body.classList.add('dark');
+        }
+    
+    </script>
+    {{- /*  theme is dark  */}}
+    {{- else if (eq .Site.Params.defaultTheme "dark") }}
+    <script>
+        if (localStorage.getItem("pref-theme") === "light") {
+            document.body.classList.remove('dark')
+        }
+    
+    </script>
+    {{- else }}
+    {{- /*  theme is auto  */}}
+    <script>
+        if (localStorage.getItem("pref-theme") === "dark") {
+            document.body.classList.add('dark');
+        } else if (localStorage.getItem("pref-theme") === "light") {
+            document.body.classList.remove('dark')
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+    
+    </script>
+    {{- end }}
+    {{- /*  theme-toggle is disabled and theme is auto  */}}
+    {{- else if (and (ne .Site.Params.defaultTheme "light") (ne .Site.Params.defaultTheme "dark"))}}
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+    
+    </script>
+    {{- end }}
+    <noscript>
+        <style type="text/css">
+            .theme-toggle,
+            .top-link {
+                display: none;
+            }
+    
+        </style>
+    </noscript>
+    <div class="theme-toggle" title="(Alt + T)">
+        <a id="theme-toggle" accesskey="t">
+            <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </a>
+    </div>
+</body>
+
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+      if (document.body.className.includes("dark")) {
+          document.body.classList.remove('dark');
+          localStorage.setItem("pref-theme", 'light');
+      } else {
+          document.body.classList.add('dark');
+          localStorage.setItem("pref-theme", 'dark');
+      }
+  })
+
+</script>
+
+</html>
