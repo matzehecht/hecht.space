@@ -10,6 +10,8 @@ minify:
 
 
 params:
+  assets:
+    disableFingerprinting: true #See https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#failed-to-find-a-valid-digest-in-the-integrity-attribute-for-resource--
   defaultTheme: auto # theme
   ShowShareButtons: true # theme
   ShowReadingTime: true # theme
