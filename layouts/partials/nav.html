@@ -1,0 +1,52 @@
+<nav class="nav" id="navigation">
+  <ul class="nav__list">
+    {{ $lang := .Lang}}
+    {{- with $.Site.Home.AllTranslations }}
+    <div class="lang-switch">
+        <ul>
+            {{- range . -}}
+            {{- if ne $lang .Lang }}
+            <li>
+                <a href="{{- .Permalink -}}" title="{{ .Language.LanguageName | default (.Lang | humanize) }}"
+                    aria-label="{{ .Language.LanguageName | default (.Lang | humanize) }}">
+                    {{- if (and $.Site.Params.displayFullLangName (.Language.LanguageName)) }}
+                    {{- .Language.LanguageName | emojify -}}
+                    {{- else }}
+                    {{- .Lang | humanize -}}
+                    {{- end -}}
+                    <span class="child-indicator" />
+                </a>
+            </li>
+            {{- end -}}
+            {{- end}}
+        </ul>
+    </div>
+    {{- end }}
+    {{ $currentPage := . }}
+    {{ range .Site.Menus.main }}
+      {{ if .HasChildren }}
+        <div {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
+          {{end}}>
+          <li>
+            <a {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
+            {{end}} href="{{ .URL }}">{{ .Name }}<span class="child-indicator"> ></span></a>
+          </li>
+          <ul class="sub-menu">
+              {{ range .Children }}
+                  <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                      <a href="{{ .URL }}">{{ .Name }}</a>
+                  </li>
+              {{ end }}
+          </ul>
+        </div>
+      {{ else }}
+        <div {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
+        {{end}}>
+          <li>
+            <a href="{{ .URL }}">{{ .Name }}<span class="child-indicator" /></a>
+          </li>
+        </div>
+      {{ end }}
+    {{ end }}
+  </ul>
+</nav>
