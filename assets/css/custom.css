@@ -10,6 +10,41 @@ body {
 }
 
 #homeBanner {
+  background-color: var(--frontFG);
+  background-image: radial-gradient(
+      ellipse at center,
+      var(--BGgradient1) 0%,
+      var(--BGgradient2) 20%,
+      var(--BGgradient2) 39%,
+      var(--BGgradient2) 60%,
+      var(--BGgradient3) 100%
+    ),
+    repeating-linear-gradient(
+      var(--gradient-degree-inv),
+      transparent,
+      transparent 45%,
+      var(--BGshadow) 50%,
+      var(--frontBG) 50%,
+      var(--frontBG) 100%
+    );
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: var(--primary);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter,
+    monospace;
+  cursor: default;
+  width: 100vw;
+  height: 100vh;
+}
+
+.dark #homeBanner {
   background-color: var(--frontBG);
   background-image: radial-gradient(
       ellipse at center,
@@ -27,21 +62,6 @@ body {
       var(--frontFG) 50%,
       var(--frontFG) 100%
     );
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: var(--primary);
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter,
-    monospace;
-  cursor: default;
-  width: 100vw;
-  height: 100vh;
 }
 
 #name {
@@ -156,4 +176,14 @@ body {
   height: 1.4rem;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.post-description a {
+  box-shadow: 0 1px 0;
+}
+
+@media screen and (max-width: 799px) {
+  .main {
+    top: var(--header-height);
+  }
 }

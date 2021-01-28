@@ -1,9 +1,8 @@
 function onResize() {
-  document.body.style.setProperty(
-    '--gradient-degree',
-    (Math.atan((window.innerHeight * -1) / window.innerWidth) * 180) / Math.PI +
-      'deg'
-  );
+  const deg =
+    (Math.atan((window.innerHeight * -1) / window.innerWidth) * 180) / Math.PI;
+  document.body.style.setProperty('--gradient-degree', deg + 'deg');
+  document.body.style.setProperty('--gradient-degree-inv', (180 + deg) + 'deg');
 }
 
 document.body.onload = onResize;

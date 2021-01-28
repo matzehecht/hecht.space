@@ -25,7 +25,7 @@
   visibility: visible;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* TODO */
+  background: var(--navMobileBG);
 }
 
 @media screen and (min-width: 800px) {
@@ -48,7 +48,7 @@
   }
 }
 
-@media screen and (max-width: 800px - 1) {
+@media screen and (max-width: 799px) {
   .nav__list {
     transform: translateY(-25px);
     opacity: 0;
@@ -64,21 +64,38 @@
   margin-bottom: 1em;
 }
 
+@media screen and (max-width: 799px) {
+  .nav__list div {
+    margin-bottom: 1em;
+    overflow: hidden;
+  }
+}
+
 .nav__list div:hover {
   background: rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.2);
 }
 
-.nav__list div:hover .sub-menu {
+.nav__list div:hover ul.sub-menu {
   display: initial;
 }
 
-.nav__list div .sub-menu {
-  display: none;
+.nav__list div ul.sub-menu.active {
+  display: initial;
+}
+
+@media screen and (min-width: 800px) {
+  .nav__list div ul.sub-menu {
+    display: none;
+  }
+}
+
+.nav__list div ul.sub-menu {
+  width: 100%;
   padding-left: 0;
 }
 
-.nav__list div .sub-menu li:hover {
+.nav__list div ul.sub-menu li:hover {
   background: rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.4);
 }
@@ -88,7 +105,27 @@
 }
 
 .nav__list div li {
+  width: 100%;
+  padding-right: 0.5em;
   line-height: 1.5em;
+}
+
+.nav__list div li .child-indicator.has-child:after {
+  content: '\02C5';
+}
+
+@media screen and (min-width: 800px) {
+  .nav__list div li .child-indicator.has-child:after {
+    content: '\02C3';
+  }
+}
+
+.nav__list div li.active .child-indicator.has-child:after {
+  content: '\02C5';
+}
+
+.nav__list div:hover li .child-indicator.has-child:after {
+  content: '\02C5';
 }
 
 .nav__list div li .child-indicator {
@@ -97,21 +134,30 @@
 }
 
 .nav__list a {
-  color: var(--content);
+  color: var(--theme);
   text-decoration: none;
   font-size: 2em;
 }
 
-.nav__list a:active {
+.nav__list li.active a {
+  color: var(--highlight);
+}
+
+.dark .nav__list li.active a {
   color: var(--highlight);
 }
 
 .nav__list a:hover {
-  color: var(--highlight);
+  color: var(--theme) !important;
+}
+
+.dark .nav__list a:hover {
+  color: var(--highlight) !important;
 }
 
 @media screen and (min-width: 800px) {
   .nav__list a {
+    color: var(--content);
     font-size: 1em;
   }
 }
