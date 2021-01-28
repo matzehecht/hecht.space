@@ -120,6 +120,10 @@
   }
 }
 
+.nav__list div li.active .child-indicator.has-child:after {
+  content: '\02C5';
+}
+
 .nav__list div:hover li .child-indicator.has-child:after {
   content: '\02C5';
 }
