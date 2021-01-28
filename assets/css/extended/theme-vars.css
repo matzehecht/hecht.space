@@ -5,18 +5,16 @@
   --burgerContainerHeight: 4rem;
   --meatWidth: 28px;
   --meatHeight: 2px;
-  --frontFG: #D9D9D9;
-  --frontBG: #327894;
+  --frontFG: #d9d9d9;
+  --frontBG: #2f6b83;
   --BGgradient1: rgba(0, 0, 0, 0.2);
   --BGgradient2: rgba(0, 0, 0, 0.1);
   --BGgradient3: rgba(0, 0, 0, 0.3);
-  --BGshadow: rgba(255, 255, 255, 0.1);
-  --BGshadow: rgba(255, 255, 255, 0.1);
+  --BGshadow: rgba(0, 0, 0, 0.15);
 }
 
 .dark {
   --highlight: #f7c035;
-  --blink: #0031b8;
   --frontFG: #2f6b83;
   --frontBG: #333333;
   --BGgradient1: rgba(0, 0, 0, 0.5);
