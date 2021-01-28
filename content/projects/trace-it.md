@@ -1,9 +1,9 @@
 ---
 title: "trace-it"
-date: 2021-11-23T11:01:30+01:00
+date: 2020-11-23T11:01:30+01:00
 draft: false
-math: false
-toc: false
+math: true
+toc: true
 summary: This package provides a lightweight performance tracing/measuring tool based on transaction trees. (Inspired by the performance monitoring from sentry.io. But is not distributed). - Nearly no dependencies, Stupidly simple but really feature-rich and battery-included.
 
 menu:
