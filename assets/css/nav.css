@@ -69,16 +69,20 @@
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.2);
 }
 
-.nav__list div:hover .sub-menu {
+.nav__list div:hover ul.sub-menu {
   display: initial;
 }
 
-.nav__list div .sub-menu {
+.nav__list div ul.sub-menu.active {
+  display: initial;
+}
+
+.nav__list div ul.sub-menu {
   display: none;
   padding-left: 0;
 }
 
-.nav__list div .sub-menu li:hover {
+.nav__list div ul.sub-menu li:hover {
   background: rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.4);
 }
@@ -88,6 +92,8 @@
 }
 
 .nav__list div li {
+  width: 100%;
+  padding-right: 0.5em;
   line-height: 1.5em;
 }
 
@@ -102,11 +108,19 @@
   font-size: 2em;
 }
 
-.nav__list a:active {
+.nav__list li.active a {
+  color: var(--highlight);
+}
+
+.dark .nav__list li.active a {
   color: var(--highlight);
 }
 
 .nav__list a:hover {
+  color: var(--theme);
+}
+
+.dark .nav__list a:hover {
   color: var(--highlight);
 }
 

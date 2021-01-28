@@ -25,24 +25,24 @@
     {{ $currentPage := . }}
     {{ range .Site.Menus.main }}
       {{ if .HasChildren }}
-        <div {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
+        <div>
+          <li {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
           {{end}}>
-          <li>
-            <a {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
-            {{end}} href="{{ .URL }}">{{ .Name }}<span class="child-indicator"> ></span></a>
+            <a href="{{ .URL }}">{{ .Name }}<span class="child-indicator"> ></span></a>
           </li>
-          <ul class="sub-menu">
+          <ul class="sub-menu {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
               {{ range .Children }}
-                  <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                  <li {{ if ($currentPage.IsMenuCurrent "main" .) }} class="active"
+                  {{end}}>
                       <a href="{{ .URL }}">{{ .Name }}</a>
                   </li>
               {{ end }}
           </ul>
         </div>
       {{ else }}
-        <div {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
-        {{end}}>
-          <li>
+        <div>
+          <li {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
+          {{end}}>
             <a href="{{ .URL }}">{{ .Name }}<span class="child-indicator" /></a>
           </li>
         </div>
