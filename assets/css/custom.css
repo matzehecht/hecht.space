@@ -181,3 +181,9 @@ body {
 .post-description a {
   box-shadow: 0 1px 0;
 }
+
+@media screen and (max-width: 799px) {
+  .main {
+    top: var(--header-height);
+  }
+}

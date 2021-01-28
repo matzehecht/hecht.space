@@ -1,6 +1,7 @@
 baseURL: 'https://hecht.space/'
 title: Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN
 theme: PaperMod
+enableEmoji: true
 
 enableRobotsTXT: true
 paginate: 5
@@ -20,7 +21,6 @@ params:
   title: Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN # theme
   description: "Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN" # theme
   author: Matthias Hecht # theme
-  enableEmoji: true
   linkedin: https://www.linkedin.com/in/matthias-hecht-931851164/
   xing: https://www.xing.com/profile/Matthias_Hecht20/
   github: https://github.com/matzehecht
