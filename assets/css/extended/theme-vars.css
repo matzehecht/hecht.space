@@ -3,6 +3,7 @@
   --blink: #0031b8;
   --navWidth: 150px;
   --burgerContainerHeight: 4rem;
+  --header-height: var(--burgerContainerHeight);
   --meatWidth: 28px;
   --meatHeight: 2px;
   --frontFG: #d9d9d9;
