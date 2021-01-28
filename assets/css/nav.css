@@ -25,7 +25,7 @@
   visibility: visible;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* TODO */
+  background: var(--navMobileBG);
 }
 
 @media screen and (min-width: 800px) {
@@ -48,7 +48,7 @@
   }
 }
 
-@media screen and (max-width: 800px - 1) {
+@media screen and (max-width: 799px) {
   .nav__list {
     transform: translateY(-25px);
     opacity: 0;
@@ -60,8 +60,15 @@
   }
 }
 
-.nav__list div {
+.nav__list li {
   margin-bottom: 1em;
+}
+
+@media screen and (max-width: 799px) {
+  .nav__list div {
+    margin-bottom: 1em;
+    overflow: hidden;
+  }
 }
 
 .nav__list div:hover {
@@ -77,8 +84,14 @@
   display: initial;
 }
 
+@media screen and (min-width: 800px) {
+  .nav__list div ul.sub-menu {
+    display: none;
+  }
+}
+
 .nav__list div ul.sub-menu {
-  display: none;
+  width: 100%;
   padding-left: 0;
 }
 
@@ -97,13 +110,27 @@
   line-height: 1.5em;
 }
 
+.nav__list div li .child-indicator.has-child:after {
+  content: '\02C5';
+}
+
+@media screen and (min-width: 800px) {
+  .nav__list div li .child-indicator.has-child:after {
+    content: '\02C3';
+  }
+}
+
+.nav__list div:hover li .child-indicator.has-child:after {
+  content: '\02C5';
+}
+
 .nav__list div li .child-indicator {
   display: inline-block;
   width: 0.9em;
 }
 
 .nav__list a {
-  color: var(--content);
+  color: var(--theme);
   text-decoration: none;
   font-size: 2em;
 }
@@ -117,15 +144,16 @@
 }
 
 .nav__list a:hover {
-  color: var(--theme);
+  color: var(--theme) !important;
 }
 
 .dark .nav__list a:hover {
-  color: var(--highlight);
+  color: var(--highlight) !important;
 }
 
 @media screen and (min-width: 800px) {
   .nav__list a {
+    color: var(--content);
     font-size: 1em;
   }
 }
