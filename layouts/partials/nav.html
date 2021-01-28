@@ -24,29 +24,22 @@
     {{- end }}
     {{ $currentPage := . }}
     {{ range .Site.Menus.main }}
-      {{ if .HasChildren }}
         <div>
           <li {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
           {{end}}>
-            <a href="{{ .URL }}">{{ .Name }}<span class="child-indicator"> ></span></a>
+            <a href="{{ .URL }}">{{ .Name }}<span class="child-indicator {{ if .HasChildren }} has-child {{ end }}" /></a>
           </li>
-          <ul class="sub-menu {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+          {{ if .HasChildren }}
+            <ul class="nav__list sub-menu {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
               {{ range .Children }}
                   <li {{ if ($currentPage.IsMenuCurrent "main" .) }} class="active"
                   {{end}}>
                       <a href="{{ .URL }}">{{ .Name }}</a>
                   </li>
               {{ end }}
-          </ul>
+            </ul>
+          {{ end }}
         </div>
-      {{ else }}
-        <div>
-          <li {{ if or ($currentPage.IsMenuCurrent "main" .) (eq $currentPage.Section .Identifier) }} class="active"
-          {{end}}>
-            <a href="{{ .URL }}">{{ .Name }}<span class="child-indicator" /></a>
-          </li>
-        </div>
-      {{ end }}
     {{ end }}
   </ul>
 </nav>

@@ -11,6 +11,8 @@
   --BGgradient2: rgba(0, 0, 0, 0.1);
   --BGgradient3: rgba(0, 0, 0, 0.3);
   --BGshadow: rgba(0, 0, 0, 0.15);
+  /* --navMobileBG: rgba(255, 255, 255, 0.75); */
+  --navMobileBG: rgba(0, 0, 0, 0.5);
 }
 
 .dark {
@@ -21,4 +23,5 @@
   --BGgradient2: rgba(0, 0, 0, 0.4);
   --BGgradient3: rgba(0, 0, 0, 0.6);
   --BGshadow: rgba(0, 0, 0, 0.25);
+  --navMobileBG: rgba(0, 0, 0, 0.5);
 }
