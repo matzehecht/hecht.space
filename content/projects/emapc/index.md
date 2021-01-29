@@ -1,13 +1,16 @@
 ---
 title: EinsatzMonitor-Alarm-PDF-Converter
 date: 2021-01-27T09:35:15.000Z
-draft: true
+draft: false
 toc: false
 menu:
   main:
     name: emapc
     title: emapc
     parent: projects
+tags:
+  - projects
+slug: emapc
 ---
 
 ## Dokumentation
