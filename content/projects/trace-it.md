@@ -14,6 +14,7 @@ menu:
     
 tags:
   - projects
+slug: trace-it
 
 # theme specific
 cover: # theme
