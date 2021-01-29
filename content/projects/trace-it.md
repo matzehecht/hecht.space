@@ -211,4 +211,3 @@ See changes for each version in the [release notes](https://github.com/matzehech
 ## License
 
 MIT - [Matthias Hecht](https://github.com/matzehecht)
-
