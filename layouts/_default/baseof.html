@@ -113,6 +113,17 @@
             </svg>
         </a>
     </div>
+    {{ if .Site.Menus.legal }}
+    <div class="nav legal">
+      <ul>
+        {{ range .Site.Menus.legal }}
+        <li>
+          <a href="{{ .URL }}">{{ .Name }}<span class="child-indicator {{ if .HasChildren }} has-child {{ end }}" /></a>
+        </li>
+        {{ end }}
+      </ul>
+      </div>
+    {{ end }}
 </body>
 
 <script>
