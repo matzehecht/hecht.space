@@ -1,6 +1,7 @@
 baseURL: 'https://hecht.space/'
 title: Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN
 theme: PaperMod
+languageCode: en
 enableEmoji: true
 
 enableRobotsTXT: true
@@ -8,7 +9,6 @@ paginate: 5
 minify:
   disableXML: true
   minifyOutput: true
-
 
 params:
   assets:
@@ -19,14 +19,14 @@ params:
   ShowToc: true # theme
   tocopen: true # theme
   title: Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN # theme
-  description: "Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN" # theme
+  description: 'Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN' # theme
   author: Matthias Hecht # theme
   linkedin: https://www.linkedin.com/in/matthias-hecht-931851164/
   xing: https://www.xing.com/profile/Matthias_Hecht20/
   github: https://github.com/matzehecht
   npm: https://www.npmjs.com/~matzehecht
   musescore: https://musescore.com/user/1060136
-  iconOrder: ["LinkedIn", "Xing", "GitHub", "npm", "MuseScore"]
+  iconOrder: ['LinkedIn', 'Xing', 'GitHub', 'npm', 'MuseScore']
   displayFullLangName: true
   fuseOpts: # options for search feature of theme
     isCaseSensitive: false
@@ -35,15 +35,28 @@ params:
     distance: 1000
     threshold: 0.4
     minMatchCharLength: 0
-    keys: ["title", "permalink", "summary", "content"]
-      
+    keys: ['title', 'permalink', 'summary', 'content']
+    
+privacy:
+  disqus:
+    disable: true
+  googleAnalytics:
+    disable: true
+  instagram:
+    disable: true
+  vimeo:
+    disable: true
+  youtube:
+    disable: true
+
+defaultContentLanguage: en
 languages:
-    en:
-      languageName: "English"
-      weight: 1
-    de:
-      languageName: "Deutsch"
-      weight: 2
+  en:
+    languageName: 'English'
+    weight: 1
+  de:
+    languageName: 'Deutsch'
+    weight: 2
 
 outputs:
   home:
