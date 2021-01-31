@@ -1,0 +1,114 @@
+name: Publish project
+author: matzehecht
+description: Publish project
+inputs:
+  slug:
+    description: 'slug'
+    default: ''
+    required: true
+  version:
+    description: 'version'
+    default: ''
+    required: true
+  page:
+    description: 'page'
+    default: 'README.md'
+    required: true
+  languages:
+    description: 'languages'
+    default: '.de,'
+    required: true
+  assets:
+    description: 'assets'
+    default: ''
+    required: false
+runs:
+  using: 'composite'
+  steps:
+    - name: Get information
+      shell: bash
+      run: |
+        title=$(sed -rn '1s/^#\s(.*)$/\1/p' ${{ inputs.page }})
+        date=$(date +%Y-%m-%dT%H:%M:%S%:z)
+        fileversion=$(echo "${{ inputs.version }}" | sed 's/\./-/g')
+        version="${{ inputs.version }}"
+    - name: create front matters
+      shell: bash
+      run: |
+        echo "---" > fm.md
+        echo "title: $title" >> fm.md
+        echo "date: $date" >> fm.md
+        echo "draft: false" >> fm.md
+        echo "toc: false" >> fm.md
+        echo "menu:" >> fm.md
+        echo "  main:" >> fm.md
+        echo "    name: ${{ inputs.slug }}" >> fm.md
+        echo "    title: ${{ inputs.slug }}" >> fm.md
+        echo "    parent: projects" >> fm.md
+        echo "tags:" >> fm.md
+        echo "  - projects" >> fm.md
+        echo "slug: ${{ inputs.slug }}" >> fm.md
+        echo "---" >> fm.md
+        echo "" >> fm.md
+        echo "---" > subfm.md
+        echo "title: $title - $version" >> subfm.md
+        echo "date: $date" >> subfm.md
+        echo "draft: false" >> subfm.md
+        echo "toc: false" >> subfm.md
+        echo "menu:" >> subfm.md
+        echo "  main:" >> subfm.md
+        echo "    name: $version" >> subfm.md
+        echo "    title: $version" >> subfm.md
+        echo "    parent: ${{ inputs.slug }}" >> subfm.md
+        echo "tags:" >> subfm.md
+        echo "  - projects" >> subfm.md
+        echo "slug: $version" >> subfm.md
+        echo "---" >> subfm.md
+        echo "" >> subfm.md
+    - name: Insert assets
+      shell: bash
+      run: |
+        # Split string in array
+        assetslist="${{ inputs.assets }}"
+        assets=(${assetslist//,/ })
+        
+        for i in "${!assets[@]}"; do
+          sed -rin "s/^(.*)\(.*\)<\!-- #ASSET#$i -->(.*)$/\1\(downloads\/${fileversion}-${assets[$i]}\)\2/" ${{ inputs.page }}
+        done
+    - name: Copy stuff
+      shell: bash
+      run: |
+        # Split string in array
+        langslist="${{ inputs.languages }}"
+        langs=(${langslist//,/ })
+        assetslist="${{ inputs.assets }}"
+        assets=(${assetslist//,/ })
+        
+        folderpath="hechtspace/content/projects/${{ inputs.slug }}"
+        
+        for asset in "${assets[@]}"; do
+          cp -f $asset "$folderpath/downloads/${fileversion}-$asset"
+        done
+        
+        for lang in "${langs[@]}"; do
+          if [ "$lang" == "en" ]
+          then
+            lang=""
+          else
+            lang=".$lang"
+          fi
+          cp -f fm.md "$folderpath/index${lang}.md"
+          sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/index${lang}.md"
+          cp -f subfm.md "$folderpath/${fileversion}${lang}.md"
+          sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/${fileversion}${lang}.md"
+        done
+    - name: Commit and push
+      shell: bash
+      run: |
+        cd hechtspace
+        git add .
+        git config user.email "dev@hecht.space"
+        git config user.name "${{ inputs.slug }} ReleaseBot"
+        git commit -m "release ${{ inputs.slug }} version ${version}"
+        git push
+        
