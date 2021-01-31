@@ -14,10 +14,6 @@ inputs:
     description: 'page'
     default: 'README.md'
     required: true
-  languages:
-    description: 'languages'
-    default: '.de,'
-    required: true
   assets:
     description: 'assets'
     default: ''
@@ -25,16 +21,17 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Get information
+    - name: run
       shell: bash
       run: |
+        # Get information
         title=$(sed -rn '1s/^#\s(.*)$/\1/p' ${{ inputs.page }})
         date=$(date +%Y-%m-%dT%H:%M:%S%:z)
         fileversion=$(echo "${{ inputs.version }}" | sed 's/\./-/g')
         version="${{ inputs.version }}"
-    - name: create front matters
-      shell: bash
-      run: |
+        
+        
+        # create front matters
         echo "---" > fm.md
         echo "title: $title" >> fm.md
         echo "date: $date" >> fm.md
@@ -65,22 +62,20 @@ runs:
         echo "slug: $version" >> subfm.md
         echo "---" >> subfm.md
         echo "" >> subfm.md
-    - name: Insert assets
-      shell: bash
-      run: |
-        # Split string in array
+        
+        
+        # Insert assets
+        ## Split string in array
         assetslist="${{ inputs.assets }}"
         assets=(${assetslist//,/ })
         
         for i in "${!assets[@]}"; do
           sed -rin "s/^(.*)\(.*\)<\!-- #ASSET#$i -->(.*)$/\1\(downloads\/${fileversion}-${assets[$i]}\)\2/" ${{ inputs.page }}
         done
-    - name: Copy stuff
-      shell: bash
-      run: |
-        # Split string in array
-        langslist="${{ inputs.languages }}"
-        langs=(${langslist//,/ })
+        
+        
+        # Copy stuff
+        ## Split string in array
         assetslist="${{ inputs.assets }}"
         assets=(${assetslist//,/ })
         
@@ -90,21 +85,13 @@ runs:
           cp -f $asset "$folderpath/downloads/${fileversion}-$asset"
         done
         
-        for lang in "${langs[@]}"; do
-          if [ "$lang" == "en" ]
-          then
-            lang=""
-          else
-            lang=".$lang"
-          fi
-          cp -f fm.md "$folderpath/index${lang}.md"
-          sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/index${lang}.md"
-          cp -f subfm.md "$folderpath/${fileversion}${lang}.md"
-          sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/${fileversion}${lang}.md"
-        done
-    - name: Commit and push
-      shell: bash
-      run: |
+        cp -f fm.md "$folderpath/index.md"
+        sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/index.md"
+        cp -f subfm.md "$folderpath/${fileversion}.md"
+        sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/${fileversion}.md"
+        
+        
+        # Release
         cd hechtspace
         git add .
         git config user.email "dev@hecht.space"
