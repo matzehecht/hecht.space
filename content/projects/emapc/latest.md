@@ -45,10 +45,10 @@ Ersteres wird zur einmaligen Verarbeitung der Eingabe verwendet. Der Dienst hing
 
 **Downloads:**
 
-- Windows Dienst Installer [64-bit](downloads/v1-3-0-emapc-windows-service-installer-x64.msi)
-- Windows Dienst Installer [32-bit](downloads/v1-3-0-emapc-windows-service-installer-x86.msi)
-- Linux Installer (cli & Dienst) [64-bit](downloads/v1-3-0-install-linuxx64.sh)
-- Linux Installer (cli & Dienst) [32-bit](downloads/v1-3-0-install-linuxx86.sh)
+- Windows Dienst Installer [64-bit](/projects/emapc/downloads/v1-3-0-emapc-windows-service-installer-x64.msi)
+- Windows Dienst Installer [32-bit](/projects/emapc/downloads/v1-3-0-emapc-windows-service-installer-x86.msi)
+- Linux Installer (cli & Dienst) [64-bit](/projects/emapc/downloads/v1-3-0-install-linuxx64.sh)
+- Linux Installer (cli & Dienst) [32-bit](/projects/emapc/downloads/v1-3-0-install-linuxx86.sh)
 - Weitere Downloads (wie die Binärdateien können auf der [Releaseseite](https://github.com/matzehecht/EinsatzMonitor-Alarm-PDF-Converter/releases/latest) gefunden werden)
 
 Emapc unterstützt Linux (32-Bit [x86] und 64-Bit [x64]) und Windows (32-Bit [x86] und 64-Bit [x64]).  

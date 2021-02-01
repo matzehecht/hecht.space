@@ -74,7 +74,7 @@ runs:
         assets=(${assetslist//,/ })
         
         for i in "${!assets[@]}"; do
-          sed -rin "s/^(.*)\(.*\)<\!-- #ASSET#$i -->(.*)$/\1\(downloads\/${fileversion}-${assets[$i]}\)\2/" ${{ inputs.page }}
+          sed -rin "s/^(.*)\(.*\)<\!-- #ASSET#$i -->(.*)$/\1\(\/projects\/${{ inputs.slug }}\/downloads\/${fileversion}-${assets[$i]}\)\2/" ${{ inputs.page }}
         done
         
         
