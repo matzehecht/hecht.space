@@ -39,12 +39,14 @@ runs:
         echo "toc: false" >> fm.md
         echo "menu:" >> fm.md
         echo "  main:" >> fm.md
-        echo "    name: ${{ inputs.slug }}" >> fm.md
-        echo "    title: ${{ inputs.slug }}" >> fm.md
-        echo "    parent: projects" >> fm.md
+        echo "    name: latest" >> fm.md
+        echo "    title: latest" >> fm.md
+        echo "    parent: ${{ inputs.slug }}" >> fm.md
         echo "tags:" >> fm.md
         echo "  - projects" >> fm.md
-        echo "slug: ${{ inputs.slug }}" >> fm.md
+        echo "  - ${{ inputs.slug }}" >> fm.md
+        echo "slug: latest" >> fm.md
+        echo "type: project" >> fm.md
         echo "---" >> fm.md
         echo "" >> fm.md
         echo "---" > subfm.md
@@ -59,7 +61,9 @@ runs:
         echo "    parent: ${{ inputs.slug }}" >> subfm.md
         echo "tags:" >> subfm.md
         echo "  - projects" >> subfm.md
+        echo "  - ${{ inputs.slug }}" >> subfm.md
         echo "slug: $version" >> subfm.md
+        echo "type: project" >> subfm.md
         echo "---" >> subfm.md
         echo "" >> subfm.md
         
@@ -85,8 +89,8 @@ runs:
           cp -f $asset "$folderpath/downloads/${fileversion}-$asset"
         done
         
-        cp -f fm.md "$folderpath/index.md"
-        sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/index.md"
+        cp -f fm.md "$folderpath/latests.md"
+        sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/latest.md"
         cp -f subfm.md "$folderpath/${fileversion}.md"
         sed -r '1s/^#\s(.*)$//' ${{ inputs.page }} >> "$folderpath/${fileversion}.md"
         
