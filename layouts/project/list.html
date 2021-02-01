@@ -1,5 +1,5 @@
 {{- define "main" }}
 
-{{ partial "content.html" ( index .Pages 0) }}
+{{ partial "content.html" ( index ( where .Pages "Slug" "latest" ) 0) }}
 
 {{- end  }}{{- /* end main */ -}}
