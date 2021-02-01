@@ -1,14 +1,23 @@
 baseURL: 'https://hecht.space/'
 title: Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN
 theme: PaperMod
-languageCode: en
+languageCode: en-us
 enableEmoji: true
+author:
+  name: "Matthias Hecht"
+  email: info@hecht.space
 
 enableRobotsTXT: true
 paginate: 5
 minify:
   disableXML: true
   minifyOutput: true
+  
+sitemap:
+  changefreq: monthly
+  filename: sitemap.xml
+  priority: 0.5
+  
 
 params:
   assets:

@@ -1,6 +1,5 @@
 ---
 title: "Impressum"
-date: 2021-01-30T23:40:48+01:00
 draft: false
 
 menu:
