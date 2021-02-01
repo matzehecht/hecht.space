@@ -22,24 +22,23 @@
     </main>
     {{- partialCached "footer.html" . .Type .Layout .Params }}
     
-    
-    {{- $fastsearch := resources.Get "js/fastsearch.js" | resources.ExecuteAsTemplate "js/fastsearch.js" .Site.Params.fuseOpts }}
-    {{- $fusejs := resources.Get "js/fuse.js" }}
-    {{- if not .Site.Params.assets.disableFingerprinting }}
-    {{- $search := (slice $fusejs $fastsearch ) | resources.Concat "assets/js/search.js" | minify | fingerprint }}
-    <script defer src="{{ $search.RelPermalink }}" onload="loadSearch();" integrity="{{ $search.Data.Integrity }}"></script>
-    {{ $script := resources.Get "js/custom.js" | minify | fingerprint }}
-    <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}"></script>
-    {{ $script := resources.Get "js/index.js" | minify | fingerprint }}
-    <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}"></script>
-    {{- else}}
-    {{ $search := (slice $fusejs $fastsearch ) | resources.Concat "assets/js/search.js" | minify }}
-    <script defer src="{{ $search.RelPermalink }}" onload="loadSearch();"></script>
-    {{ $script := resources.Get "js/custom.js" | minify }}
-    <script src="{{ $script.RelPermalink }}"></script>
-    {{ $script := resources.Get "js/index.js" | minify }}
-    <script src="{{ $script.RelPermalink }}"></script>
-    {{- end}}
+      {{- $fastsearch := resources.Get "js/fastsearch.js" | resources.ExecuteAsTemplate "js/fastsearch.js" .Site.Params.fuseOpts }}
+      {{- $fusejs := resources.Get "js/fuse.js" }}
+      {{- if not .Site.Params.assets.disableFingerprinting }}
+      {{- $search := (slice $fusejs $fastsearch ) | resources.Concat "assets/js/search.js" | minify | fingerprint }}
+      {{ if (eq .Layout `search`) }} <script defer src="{{ $search.RelPermalink }}" onload="loadSearch();" integrity="{{ $search.Data.Integrity }}"></script>{{ end }}
+      {{ $script := resources.Get "js/custom.js" | minify | fingerprint }}
+      <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}"></script>
+      {{ $script := resources.Get "js/index.js" | minify | fingerprint }}
+      <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity | safeHTMLAttr }}"></script>
+      {{- else}}
+      {{ $search := (slice $fusejs $fastsearch ) | resources.Concat "assets/js/search.js" | minify }}
+      {{ if (eq .Layout `search`) }} <script defer src="{{ $search.RelPermalink }}" onload="loadSearch();"></script>{{ end }}
+      {{ $script := resources.Get "js/custom.js" | minify }}
+      <script src="{{ $script.RelPermalink }}"></script>
+      {{ $script := resources.Get "js/index.js" | minify }}
+      <script src="{{ $script.RelPermalink }}"></script>
+      {{- end}}
     
     {{ block "scripts" . }} {{ end }}
     {{- /*  theme-toggle is enabled  */}}
