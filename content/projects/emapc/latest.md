@@ -5,12 +5,14 @@ draft: false
 toc: false
 menu:
   main:
-    name: emapc
-    title: emapc
-    parent: projects
+    name: latest
+    title: latest
+    parent: emapc
 tags:
   - projects
-slug: emapc
+  - emapc
+slug: latest
+type: project
 ---
 
 

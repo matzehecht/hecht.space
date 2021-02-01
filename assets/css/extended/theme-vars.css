@@ -14,6 +14,7 @@
   --BGshadow: rgba(0, 0, 0, 0.15);
   /* --navMobileBG: rgba(255, 255, 255, 0.75); */
   --navMobileBG: rgba(0, 0, 0, 0.5);
+  --fourth: rgb(221, 221, 221);
 }
 
 .dark {

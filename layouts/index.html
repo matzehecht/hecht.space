@@ -23,6 +23,7 @@
 <style>
 {{ $heading1 := .Params.heading1 }}
 {{ $heading2 := .Params.heading2 }}
+{{ if and (ne $heading1 nil) (ne $heading2 nil)}}
 @keyframes typewriter1 {
   from,
   {{ range $index, $element := (split $heading1 "" ) }}
@@ -51,6 +52,7 @@
     content: "{{ $heading2 }}";
   }
 }
+{{ end }}
 </style>
 
 {{ $script := resources.Get "js/custom.js" | minify | fingerprint }}
