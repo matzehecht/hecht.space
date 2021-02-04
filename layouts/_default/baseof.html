@@ -32,7 +32,7 @@
         </div>
       </div>
       {{- partial "social_icons.html" $.Site.Params.socialIcons -}}
-      {{- if (and .Params.profileMode .IsHome) }}
+      {{- if (and .Site.Params.profileMode .IsHome) }}
       {{ partial "more-arrow.html" }}
       {{- end }} {{/* if not profileMode */}}
     </div>

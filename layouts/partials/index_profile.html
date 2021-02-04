@@ -1,7 +1,7 @@
 <div class="profile">
   <div class="profile_inner">
       {{- if .Params.imageUrl}}
-      <div class="profile_image_wrapper" style="width: calc({{ .Params.imageWidth | default 150 }} + 1rem); height: calc({{ .Params.imageHeight | default 150 }} + 1rem);">
+      <div class="profile_image_wrapper">
         <img src="{{ .Params.imageUrl}}" alt="{{ .Params.imageTitle | default "profile image" }}"
             style="width: {{- .Params.imageWidth | default 150 -}}" />
       </div>{{- end}}
@@ -27,12 +27,11 @@
 
     function isElementInViewport(el) {
       const rect = el.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      return !(
+        rect.top >= (window.innerHeight || document.documentElement.clientHeight) ||
+        rect.bottom <= 0 ||
+        rect.left >= (window.innerWidth || document.documentElement.clientWidth) ||
+        rect.right <= 0
       );
     }
     
