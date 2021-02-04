@@ -1,0 +1,50 @@
+.profile_inner {
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20%);
+  transition: all 500ms ease;
+  filter: blur(1rem);
+}
+
+.profile_inner.isVisible {
+  filter: blur(0);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.profile_inner img {
+  margin: auto;
+  display: block;
+  height: auto;
+}
+
+.profile_image_wrapper {
+  position: relative;
+  margin: auto;
+  display: flex;
+  border-radius: 50%;
+  background-color: var(--theme);
+  z-index: 1;
+}
+
+.profile_body {
+  border-radius: 2rem;
+  width: 100%;
+  background-color: var(--code-bg);
+  position: relative;
+  top: -4rem;
+  padding: 2rem;
+  padding-top: 4.5rem;
+  text-align: initial;
+}
+
+.profile_body > h1 {
+  display: inline-block;
+}
+
+.profile_body > span {
+  display:inline-block;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-right: 0.5em;
+}

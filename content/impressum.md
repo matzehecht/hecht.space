@@ -3,9 +3,11 @@ title: "Impressum"
 draft: false
 
 menu:
-  legal:
+  main:
     name: "impressum"
     title: "impressum"
+    identifier: "impressum"
+    weight: 100
 ---
 
 Angaben gemäß § 5 TMG  

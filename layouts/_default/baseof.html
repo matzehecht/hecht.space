@@ -16,10 +16,69 @@
   {{ partial "burger.html" .}} 
 
   {{ partial "nav.html" .}}
+  
+  {{ if .IsHome }}
+    <div id="homeBanner">
+      <div id="title">
+        <div id="name">{{ .Params.name }}</div>
+        <div id="heading">
+          <span id="heading1"></span>
+          <span id="heading2"></span>
+        </div>
+        <div id="slogan"></div>
+        <div id="subheading">
+          <span>{{ .Params.subheading1 }}</span> |
+          <span>{{ .Params.subheading2 }}</span>
+        </div>
+      </div>
+      {{ partial "social-icons.html" .}}
+      {{- if (and .Site.Params.profileMode.enabled .IsHome) }}
+      {{ partial "more-arrow.html" }}
+      {{- end }} {{/* if not profileMode */}}
+    </div>
+  {{ end }}
+
+  <style>
+  {{ $heading1 := .Params.heading1 }}
+  {{ $heading2 := .Params.heading2 }}
+  {{ if and (ne $heading1 nil) (ne $heading2 nil)}}
+  @keyframes typewriter1 {
+    from,
+    {{ range $index, $element := (split $heading1 "" ) }}
+    {{ $index }}% {
+      content: "{{ substr $heading1 0 (add $index 1) }}";
+    }
+    {{ end }}
+    to,
+    100% {
+      content: "{{ $heading1 }}";
+    }
+  }
+  @keyframes typewriter2 {
+    from,
+    0.0%,
+    {{ sub (len $heading1) 1 }}% {
+      content: "";
+    }
+    {{ range $index, $element := (split $heading2 "" ) }}
+    {{ add (len $heading1) $index }}% {
+      content: "{{ substr $heading2 0 (add $index 1) }}";
+    }
+    {{ end }}
+    to,
+    100% {
+      content: "{{ $heading2 }}";
+    }
+  }
+  {{ end }}
+  </style>
+  
+    {{ if or (not .IsHome) .Site.Params.profileMode.enabled }}
     <main class="main">
         {{- block "main" . }}
         {{- end }}
     </main>
+    {{ end }}
     {{- partialCached "footer.html" . .Type .Layout .Params }}
     
       {{- $fastsearch := resources.Get "js/fastsearch.js" | resources.ExecuteAsTemplate "js/fastsearch.js" .Site.Params.fuseOpts }}
@@ -112,17 +171,6 @@
             </svg>
         </a>
     </div>
-    {{ if .Site.Menus.legal }}
-    <div class="nav legal">
-      <ul>
-        {{ range .Site.Menus.legal }}
-        <li>
-          <a href="{{ .URL }}">{{ .Name }}<span class="child-indicator {{ if .HasChildren }} has-child {{ end }}" /></a>
-        </li>
-        {{ end }}
-      </ul>
-      </div>
-    {{ end }}
 </body>
 
 <script>

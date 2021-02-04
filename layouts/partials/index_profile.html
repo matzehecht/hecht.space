@@ -1,0 +1,53 @@
+<div class="profile">
+    {{- with .Site.Params.profileMode }}
+    <div class="profile_inner">
+        {{- if .imageUrl}}
+        <div class="profile_image_wrapper" style="width: calc({{ .imageWidth | default 150 }} + 1rem); height: calc({{ .imageHeight | default 150 }} + 1rem);">
+          <img src="{{ .imageUrl}}" alt="{{ .imageTitle | default "profile image" }}"
+              style="width: {{- .imageWidth | default 150 -}}" />
+        </div>{{- end}}
+        <div class="profile_body">
+          <span>{{- .greetings | markdownify | emojify -}}</span>
+          <h1>{{- .name | default $.Site.Title | markdownify | emojify -}}</h1>
+          <div>{{- .body | markdownify -}}</div>
+          {{- partial "social_icons.html" $.Site.Params.socialIcons -}}
+
+          {{- with .buttons }}
+          <div class="buttons">
+              {{- range . -}}
+              <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name | humanize }}">
+                  <span class="button-inner">{{ .name }}</span>
+              </a>
+              {{- end -}}
+          </div>
+        </div>
+        {{- end }}
+    </div>
+    <script>
+      const cards = document.querySelectorAll(".profile_inner");
+
+      function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+      
+      function isCardVisible() {
+        for (card of cards) {
+          isElementInViewport(card)
+            ? card.classList.add("isVisible")
+            : card.classList.remove("isVisible");
+        }
+      }
+      
+      document.addEventListener("DOMContentLoaded", isCardVisible);
+      window.addEventListener("scroll", isCardVisible);
+      window.addEventListener("resize", isCardVisible);
+    </script>
+    {{- end}}
+</div>
