@@ -31,8 +31,8 @@
           <span>{{ .Params.subheading2 }}</span>
         </div>
       </div>
-      {{ partial "social-icons.html" .}}
-      {{- if (and .Site.Params.profileMode.enabled .IsHome) }}
+      {{- partial "social_icons.html" $.Site.Params.socialIcons -}}
+      {{- if (and .Params.profileMode .IsHome) }}
       {{ partial "more-arrow.html" }}
       {{- end }} {{/* if not profileMode */}}
     </div>
@@ -73,7 +73,7 @@
   {{ end }}
   </style>
   
-    {{ if or (not .IsHome) .Site.Params.profileMode.enabled }}
+    {{ if or (not .IsHome) .Site.Params.profileMode }}
     <main class="main">
         {{- block "main" . }}
         {{- end }}

@@ -30,12 +30,6 @@ params:
   title: Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN # theme
   description: 'Matthias Hecht | hecht.space | DEVELOPER - MUSICIAN' # theme
   author: Matthias Hecht # theme
-  linkedin: https://www.linkedin.com/in/matthias-hecht-931851164/
-  xing: https://www.xing.com/profile/Matthias_Hecht20/
-  github: https://github.com/matzehecht
-  npm: https://www.npmjs.com/~matzehecht
-  musescore: https://musescore.com/user/1060136
-  iconOrder: ['LinkedIn', 'Xing', 'GitHub', 'npm', 'MuseScore']
   displayFullLangName: true
   fuseOpts: # options for search feature of theme
     isCaseSensitive: false
@@ -45,15 +39,20 @@ params:
     threshold: 0.4
     minMatchCharLength: 0
     keys: ['title', 'permalink', 'summary', 'content']
-  profileMode:
-    enabled: true
-    greetings: "Hi :wave:, I am"
-    name: "Matthias Hecht!"
-    body: "I am a Full-Stack Developer/Software-Engineer, living in southern Germany. "
-    imageUrl: images/me.png
-    imageTitle: "title"
-    imageWidth: 16rem
-    imageHeight: 16rem
+  profileMode: true
+  socialIcons:
+    - name: linkedin
+      url: 'https://www.linkedin.com/in/matthias-hecht-931851164/'
+    - name: xing
+      url: 'https://www.xing.com/profile/Matthias_Hecht20/'
+    - name: npm
+      url: 'https://www.npmjs.com/~matzehecht'
+    - name: github
+      url: 'https://github.com/matzehecht'
+    - name: email
+      url: 'mailto:dev@hecht.space'
+    - name: musescore
+      url: 'https://musescore.com/user/1060136'
     
 privacy:
   disqus:
