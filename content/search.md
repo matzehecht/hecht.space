@@ -9,4 +9,5 @@ menu:
     name: search
     title: search
     identifier: search
+    weight: 99
 ---

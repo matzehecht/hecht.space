@@ -45,6 +45,15 @@ params:
     threshold: 0.4
     minMatchCharLength: 0
     keys: ['title', 'permalink', 'summary', 'content']
+  profileMode:
+    enabled: true
+    greetings: "Hi :wave:, I am"
+    name: "Matthias Hecht!"
+    body: "I am a Full-Stack Developer/Software-Engineer, living in southern Germany. "
+    imageUrl: images/me.png
+    imageTitle: "title"
+    imageWidth: 16rem
+    imageHeight: 16rem
     
 privacy:
   disqus:

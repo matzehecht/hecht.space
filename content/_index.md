@@ -12,4 +12,7 @@ menu:
     name: home
     title: home
     identifier: home
+    weight: 1
 ---
+
+Test

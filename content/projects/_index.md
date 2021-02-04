@@ -10,4 +10,5 @@ menu:
     name: "projects"
     title: "projects"
     identifier: projects
+    weight: 2
 ---
