@@ -1,9 +1,9 @@
 .profile_inner {
   width: 100%;
   opacity: 0;
-  transform: translateY(20%);
-  transition: all 500ms ease;
-  filter: blur(1rem);
+  transform: translateY(50%);
+  transition: all 1s ease;
+  filter: blur(2rem);
 }
 
 .profile_inner.isVisible {
@@ -19,12 +19,16 @@
 }
 
 .profile_image_wrapper {
+  box-sizing: content-box;
   position: relative;
   margin: auto;
   display: flex;
   border-radius: 50%;
   background-color: var(--theme);
   z-index: 1;
+  width: fit-content;
+  height: fit-content;
+  padding: 2%;
 }
 
 .profile_body {
@@ -47,4 +51,9 @@
   font-weight: bold;
   font-size: 1.5em;
   margin-right: 0.5em;
+}
+
+.main .profile {
+  height: unset;
+  min-height: 100%;
 }
