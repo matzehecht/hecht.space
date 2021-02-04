@@ -135,43 +135,32 @@ div.theme-toggle {
   color: var(--highlight);
 }
 
-#homeBanner .social {
+#homeBanner .social-icons {
   bottom: 0;
   right: 0;
   z-index: 2;
-  position: fixed;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
+  position: absolute;
 }
 
-#homeBanner .social a {
-  font-weight: bold;
-  color: var(--primary);
-  text-decoration: none;
+#homeBanner .social-icons a {
   padding: 0.4rem;
-}
-
-#homeBanner .social a:not(:last-child) {
   margin-right: 1em;
 }
 
-#homeBanner .social a:hover {
-  color: var(--highlight);
+#homeBanner .social-icons svg {
+  color: var(--theme);
 }
 
-#homeBanner .social a.router-link-exact-active {
-  color: var(--highlight);
-  font-weight: lighter;
+.dark #homeBanner .social-icons svg {
+  color: var(--content);
 }
 
-#homeBanner .social__icon {
-  vertical-align: middle;
-  padding-left: 1vw;
-  width: 1.4rem;
-  height: 1.4rem;
-  background-size: contain;
-  background-repeat: no-repeat;
+.social-icons svg:hover {
+  color: var(--highlight) !important;
+}
+
+.social-icons svg {
+  color: var(--content);
 }
 
 .post-description a {
