@@ -137,7 +137,7 @@ div.theme-toggle {
 
 #homeBanner .social-icons {
   bottom: 0;
-  right: 0;
+  right: 1rem;
   z-index: 2;
   position: absolute;
 }
