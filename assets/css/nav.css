@@ -1,4 +1,4 @@
-.nav {
+.my-nav {
   font-size: 16px;
   position: fixed;
   display: flex;
@@ -6,14 +6,14 @@
   align-items: center;
   background: transparent;
   visibility: hidden;
-  z-index: 1;
+  z-index: 2;
   font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter,
     monospace;
   font-weight: bold;
 }
 
 @media screen and (min-width: 1100px) {
-  .nav {
+  .my-nav {
     display: block;
     visibility: visible;
     padding-top: 3em;
@@ -21,7 +21,7 @@
   }
 }
 
-.nav--active .nav {
+.nav--active .my-nav {
   visibility: visible;
   height: 100%;
   width: 100%;
@@ -29,7 +29,7 @@
 }
 
 @media screen and (min-width: 1100px) {
-  .nav--active .nav {
+  .nav--active .my-nav {
     width: var(--navWidth);
   }
 }
@@ -84,8 +84,16 @@
   display: initial;
 }
 
-@media screen and (min-width: 1100px) {
-  .nav__list div ul.sub-menu {
+.nav__list div ul.sub-menu {
+  display: none;
+}
+
+@media screen and (max-width: 1099px) {
+  .nav__list div:hover ul.sub-menu {
+    display: none;
+  }
+
+  .nav__list div ul.sub-menu.active {
     display: none;
   }
 }
@@ -107,25 +115,21 @@
 .nav__list div li {
   width: 100%;
   padding-right: 0.5em;
-  line-height: 1.5em;
+  /* line-height: 1.5em; */
 }
 
 .nav__list div li .child-indicator.has-child:after {
-  content: '\02C5';
+  content: '\02C3';
 }
 
-@media screen and (min-width: 1100px) {
-  .nav__list div li .child-indicator.has-child:after {
+@media screen and (max-width: 1099px) {
+  .nav__list div li.active .child-indicator.has-child:after {
     content: '\02C3';
   }
-}
 
-.nav__list div li.active .child-indicator.has-child:after {
-  content: '\02C5';
-}
-
-.nav__list div:hover li .child-indicator.has-child:after {
-  content: '\02C5';
+  .nav__list div:hover li .child-indicator.has-child:after {
+    content: '\02C3';
+  }
 }
 
 .nav__list div li .child-indicator {
@@ -133,44 +137,40 @@
   width: 0.9em;
 }
 
-.nav__list a {
+.my-nav a {
   color: var(--theme);
   text-decoration: none;
   font-size: 2em;
 }
 
-.dark .nav__list a {
+@media screen and (max-width: 1099px) {
+  .my-nav a {
+    font-size: 1.2em;
+  }
+}
+
+.dark .my-nav a {
   color: var(--content);
 }
 
-.nav__list li.active a {
+.my-nav li.active a {
   color: var(--highlight);
 }
 
-.dark .nav__list li.active a {
+.dark .my-nav li.active a {
   color: var(--highlight);
 }
 
-.nav__list a:hover {
+.my-nav a:hover {
   color: var(--theme) !important;
 }
 
-.dark .nav__list a:hover {
+.dark .my-nav a:hover {
   color: var(--highlight) !important;
 }
 
-.nav.legal {
-  z-index: 1;
-  position: relative;
-  width: 100%;
-}
-
-.nav.legal ul {
-  list-style: none;
-}
-
 @media screen and (min-width: 1100px) {
-  .nav__list a {
+  .my-nav a {
     color: var(--content);
     font-size: 1em;
   }
@@ -184,7 +184,7 @@
   position: fixed;
   width: 100%;
   background: var(--theme);
-  z-index: 2;
+  z-index: 3;
 }
 
 @media screen and (min-width: 1100px) {

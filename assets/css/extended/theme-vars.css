@@ -3,7 +3,8 @@
   --blink: #0031b8;
   --navWidth: 150px;
   --burgerContainerHeight: 4rem;
-  --header-height: var(--burgerContainerHeight);
+  --header-height: 0px;
+  --footer-height: 0px;
   --meatWidth: 28px;
   --meatHeight: 2px;
   --frontFG: #d9d9d9;
@@ -15,6 +16,13 @@
   /* --navMobileBG: rgba(255, 255, 255, 0.75); */
   --navMobileBG: rgba(0, 0, 0, 0.5);
   --fourth: rgb(221, 221, 221);
+  --fullContent: black;
+}
+
+@media screen and (max-width: 1099px) {
+  :root {
+    --header-height: var(--burgerContainerHeight);
+  }
 }
 
 .dark {
@@ -26,4 +34,5 @@
   --BGgradient3: rgba(0, 0, 0, 0.6);
   --BGshadow: rgba(0, 0, 0, 0.25);
   --navMobileBG: rgba(0, 0, 0, 0.5);
+  --fullContent: white;
 }

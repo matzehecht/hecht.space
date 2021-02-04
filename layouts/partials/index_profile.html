@@ -1,0 +1,50 @@
+<div class="profile">
+  <div class="profile_inner">
+      {{- if .Params.imageUrl}}
+      <div class="profile_image_wrapper">
+        <img src="{{ .Params.imageUrl}}" alt="{{ .Params.imageTitle | default "profile image" }}"
+            style="width: {{- .Params.imageWidth | default 150 -}}" />
+      </div>{{- end}}
+      <div class="profile_body">
+        <span>{{- .Params.greetings | markdownify | emojify -}}</span>
+        <h1>{{- .Params.profileName | default $.Site.Title | markdownify | emojify -}}</h1>
+        <div>{{- .Content -}}</div>
+        {{- partial "social_icons.html" $.Site.Params.socialIcons -}}
+
+        {{- with .Params.buttons }}
+        <div class="buttons">
+            {{- range . -}}
+            <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name | humanize }}">
+                <span class="button-inner">{{ .Params.name }}</span>
+            </a>
+            {{- end -}}
+        </div>
+      </div>
+      {{- end }}
+  </div>
+  <script>
+    const cards = document.querySelectorAll(".profile_inner");
+
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return !(
+        rect.top >= (window.innerHeight || document.documentElement.clientHeight) ||
+        rect.bottom <= 0 ||
+        rect.left >= (window.innerWidth || document.documentElement.clientWidth) ||
+        rect.right <= 0
+      );
+    }
+    
+    function isCardVisible() {
+      for (card of cards) {
+        isElementInViewport(card)
+          ? card.classList.add("isVisible")
+          : card.classList.remove("isVisible");
+      }
+    }
+    
+    document.addEventListener("DOMContentLoaded", isCardVisible);
+    window.addEventListener("scroll", isCardVisible);
+    window.addEventListener("resize", isCardVisible);
+  </script>
+</div>
