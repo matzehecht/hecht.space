@@ -1,5 +1,4 @@
 .profile_inner {
-  width: 100%;
   opacity: 0;
   transform: translateY(50%);
   transition: all 1s ease;
@@ -54,4 +53,8 @@
 .main .profile {
   height: unset;
   min-height: 100%;
+}
+
+.main {
+  position: unset;
 }
