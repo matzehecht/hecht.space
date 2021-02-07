@@ -74,7 +74,7 @@
   </style>
   
     {{ if or (not .IsHome) .Site.Params.profileMode }}
-    <main class="main">
+    <main class="main {{ if .IsHome -}} profileWrapper {{- end }}">
         {{- block "main" . }}
         {{- end }}
     </main>

@@ -55,6 +55,6 @@
   min-height: 100%;
 }
 
-.main {
+.main.profileWrapper {
   position: unset;
 }

@@ -1,6 +1,11 @@
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0;
   font-size: 16px;
-  font-family: "IBM Plex Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Droid Sans","Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+  font-family: "IBM Plex Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Droid Sans","Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  min-height: 100vh;
+}
+
+.main {
+  overflow-y: auto;
 }
