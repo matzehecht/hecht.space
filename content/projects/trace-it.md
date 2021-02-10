@@ -22,7 +22,6 @@ cover: # theme
   # can also paste direct link from external site
   # ex. https://i.ibb.co/K0HVPBd/paper-mod-profilemode.png
   alt: "trace-it - lightweight performance tracking"
-  alt: "trace-it - lightweight performance tracking"
   relative: false # To use relative path for cover image, used in hugo Page-bundles
 ShowToc: true
 TocOpen: true

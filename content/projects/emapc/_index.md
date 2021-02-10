@@ -15,4 +15,10 @@ summary: |
   Dieses Tool extrahiert die relevanten Informationen der Alarm-PDF in eine schlüssel-wert-formatierte Datei, die durch die Mustererkennung des EinsatzMonitors gelesen werden kann.
 slug: emapc
 type: project
+
+# theme specific
+cover: # theme
+  image: "images/emapc.png"
+  alt: "emaopc - EinsatzMonitor Alarm-PDF Converter"
+  relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
