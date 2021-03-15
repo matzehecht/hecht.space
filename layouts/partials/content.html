@@ -1,6 +1,6 @@
 
 <article class="post-single">
-  {{- partial "banner.html" .Params.cover }}  
+  {{- partial "banner.html" . }}  
   <header class="post-header {{ if (and .Params.cover .Params.cover.image .Params.cover.banner) -}} with-banner {{- end -}}">
     <h1 class="post-title">
       {{ .Title }}
