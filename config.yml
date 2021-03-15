@@ -77,3 +77,6 @@ outputs:
     - HTML
     - RSS
     - JSON # is necessary for search feature of theme
+
+permalinks:
+  blog: /blog/:year/:month/:slug/
