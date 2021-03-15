@@ -5,15 +5,8 @@ slug: ""
 description: ""
 keywords: []
 draft: true
-tags: []
 math: false
 toc: true
-
-menu:
-  main:
-    name: "{{ replace .TranslationBaseName "-" " " | title }}"
-    title: "{{ replace .TranslationBaseName "-" " " | title }}"
-    parent: "blog"
     
 tags:
   - blog
