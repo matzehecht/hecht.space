@@ -1,0 +1,23 @@
+{{- if (and .image .banner) }}
+{{- $alt := (.alt | default .caption | plainify) }}
+<figure class="banner">
+    {{- $cover := (.Page.Resources.ByType "image").GetMatch (printf "*%s*" (.image)) }}
+    {{- if $cover -}}{{/* i.e it is present in page bundle */}}
+        {{- $sizes := (slice "360" "480" "720" "1080" "1500") }}
+        {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") }}
+        {{- $prod := (hugo.IsProduction | or (eq .Site.Params.env "production")) }}
+        {{- if (and (in $processableFormats $cover.MediaType.SubType) (ne .Site.Params.cover.responsiveImages false) (eq $prod true)) }}
+        <img srcset="{{- range $size := $sizes -}}
+                        {{- if (ge $cover.Width $size) -}}
+                        {{ printf "%s %s" (($cover.Resize (printf "%sx" $size)).Permalink) (printf "%sw ," $size) -}}
+                        {{ end }}
+                    {{- end -}}{{$cover.Permalink }} {{printf "%dw" ($cover.Width)}}"
+            sizes="(min-width: 768px) 720px, 100vw" src="{{ $cover.Permalink }}" alt="{{ $alt }}" />
+        {{- else }}{{/* Unprocessable image or responsive images disabled */}}
+        <img src="{{ (path.Join .RelPermalink .image) | absURL }}" alt="{{ $alt }}">
+        {{- end }}
+    {{- else }}{{/* For absolute urls and external links, no img processing here */}}
+            <img src="{{ (.image) | absURL }}" alt="{{ $alt }}">
+    {{- end }}
+</figure>
+{{- end }}{{/* End image */}}
