@@ -23,7 +23,6 @@ div.theme-toggle {
       var(--frontBG) 50%,
       var(--frontBG) 100%
     );
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   text-align: center;
   color: var(--primary);
 
