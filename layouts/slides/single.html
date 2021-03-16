@@ -1,48 +1,33 @@
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css"
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/simple.css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/{{- .Params.slideOptions.theme | default "simple" -}}.min.css"
   id="theme"
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/white.css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/monokai.min.css"
 />
 
-<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
-<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atelier-cave-light.min.css"
+  integrity="sha512-fNprY9f5BGeuC3KYaGc0+fAke3ZIFpsUXTMsqg2Bi2c7F/ktzTnutNkzNmq3izYkr2ke+/pyBpNsZbk1tA9OZw=="
+  crossorigin="anonymous"
+/>
 
-<!-- Printing and PDF exports -->
-<script>
-  // Load print, pdf stylesheets from jsDelivr
-  var srcUrlPrefix = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/';
-  var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href =
-    srcUrlPrefix +
-    (window.location.search.match(/print-pdf/gi)
-      ? 'css/print/pdf.css'
-      : 'css/print/paper.css');
-  document.getElementsByTagName('head')[0].appendChild(link);
-</script>
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
-<![endif]-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-pointer@0.1.0/dist/pointer.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-drawer@0.1.2/dist/drawer.css" />
 
 <div class="reveal">
   <div class="slides">
     <section
-      data-markdown
-      data-separator="^---"
-      data-separator-vertical="^--"
-      data-separator-notes="^Note:"
-      data-charset="iso-8859-15"
-    >
+        data-markdown
+        {{ range $key, $value := .Params.slideOptions.presentationOptions }}{{ printf "%s=\"%v\"\n" $key $value | safeHTMLAttr -}}{{ end }}
+      >
       {{ .RawContent }}
     </section>
   </div>
@@ -50,52 +35,41 @@
 </div>
 <!-- .reveal -->
 
-<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
-<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/zoom/zoom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/search/search.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/markdown/markdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/math/math.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/notes/notes.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js-pointer@0.1.0/dist/pointer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js-drawer@0.1.2/dist/drawer.js"></script>
 
 <script>
-  // Full list of configuration options available at:
-  // https://github.com/hakimel/reveal.js#configuration
   Reveal.initialize({
-    controls: true,
-    progress: true,
-    history: true,
-    center: true,
+    {{ range .Params.slideOptions.revealOptions }}{{ printf "%s: %v," .key .value | safeJS -}}{{ end }}
 
-    transition: 'slide', // none/fade/slide/convex/concave/zoom
-
-    // Optional reveal.js plugins, loaded from jsDelivr
-    dependencies: [
-      {
-        src: srcUrlPrefix + 'lib/js/classList.js',
-        condition: function () {
-          return !document.body.classList;
-        },
-      },
-      {
-        src: srcUrlPrefix + 'plugin/markdown/marked.js',
-        condition: function () {
-          return !!document.querySelector('[data-markdown]');
-        },
-      },
-      {
-        src: srcUrlPrefix + 'plugin/markdown/markdown.js',
-        condition: function () {
-          return !!document.querySelector('[data-markdown]');
-        },
-      },
-      {
-        src: srcUrlPrefix + 'plugin/highlight/highlight.js',
-        async: true,
-        condition: function () {
-          return !!document.querySelector('pre code');
-        },
-        callback: function () {
-          hljs.initHighlightingOnLoad();
-        },
-      },
-      { src: srcUrlPrefix + 'plugin/zoom-js/zoom.js', async: true },
-      { src: srcUrlPrefix + 'plugin/notes/notes.js', async: true },
+    // IMPORTANT: The order matters!
+    // So, RevealHightlight must be the LAST to load
+    plugins: [
+      RevealPointer,
+      RevealDrawer,
+      RevealZoom,
+      RevealSearch,
+      RevealMarkdown,
+      RevealMath,
+      RevealNotes,
+      RevealHighlight
     ],
+    dependencies: [
+      { src: '//cdn.jsdelivr.net/npm/reveal-plantuml@1.0.2' },
+    ]
   });
 </script>
+
+<style>
+  .reveal>.overlay.overlay-help .viewport table {
+    color: #fff !important;
+  }
+</style>
