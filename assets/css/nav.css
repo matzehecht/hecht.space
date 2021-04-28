@@ -17,7 +17,6 @@
   .my-nav {
     display: block;
     visibility: visible;
-    padding-top: 3em;
     width: var(--navWidth);
   }
 }
